@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker login -u="$USERNAME" -p="$PASSWORD" quay.io
+skopeo login -u="$USERNAME" -p="$PASSWORD" quay.io
 
 eln_build_name=$(koji -q latest-build --type=image eln-updates-candidate Fedora-Container-Base | awk '{print $1}')
 if [[ -n ${eln_build_name} ]]; then
