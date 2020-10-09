@@ -76,7 +76,7 @@ if [[ -n ${eln_build_name} ]]; then
     printf "Removing temporary directory\n"
     rm -rf $work_dir
 fi
-                    """
+                    """)
                 }
             }
         }
