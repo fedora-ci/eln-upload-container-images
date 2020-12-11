@@ -12,8 +12,13 @@ if [[ -n ${eln_build_name} ]]; then
 
     # Import the images
     for arch in "${arches[@]}"; do
-        xz -d ${eln_build_name}.${arch}.tar.xz
-        skopeo copy --dest-creds="$USERNAME:$PASSWORD" docker-archive:${eln_build_name}.${arch}.tar "docker://$image_repo:eln-${arch}"
+	image="${eln_build_name}.${arch}.tar.xz"
+	if [[ -f "$image" ]]; then
+            xz -d "${image}"
+            skopeo copy --dest-creds="$USERNAME:$PASSWORD" docker-archive:${eln_build_name}.${arch}.tar "docker://$image_repo:eln-${arch}"
+	else
+	    echo "WARNING: Image ${eln_build_name} for ${arch} not found"
+	fi
     done
 
     # Create and upload multi-arch manifest
