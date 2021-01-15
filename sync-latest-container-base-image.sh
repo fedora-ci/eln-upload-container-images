@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export STORAGE_DRIVER=vfs
+
 image_repo=quay.io/fedoraci/fedora
 arches=(aarch64 ppc64le x86_64 s390x)
 
