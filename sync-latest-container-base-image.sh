@@ -3,7 +3,7 @@
 export STORAGE_DRIVER=vfs
 
 image_repo=quay.io/fedoraci/fedora
-arches=(aarch64 ppc64le x86_64 s390x)
+arches=(aarch64 ppc64le x86_64) # s390x disabled
 
 eln_build_name=$(koji -q latest-build --type=image eln-updates-candidate Fedora-Container-Base | awk '{print $1}')
 if [[ -n ${eln_build_name} ]]; then
@@ -24,7 +24,7 @@ if [[ -n ${eln_build_name} ]]; then
     done
 
     # Create and upload multi-arch manifest
-    buildah rmi "$image_repo:eln"  # jic the manifest already exists
+    buildah rmi "$image_repo:eln" || true  # jic the manifest already exists
     buildah manifest create "$image_repo:eln" "${arches[@]/#/docker://$image_repo:eln-}"
     buildah manifest push --creds="$USERNAME:$PASSWORD" "$image_repo:eln" "docker://$image_repo:eln" --all
 
