@@ -3,7 +3,7 @@
 export STORAGE_DRIVER=vfs
 
 image_repo=quay.io/fedoraci/fedora
-arches=(aarch64 ppc64le x86_64) # s390x disabled
+arches=(aarch64 ppc64le x86_64 s390x)
 
 if [ -v CHANGE_ID ]; then
     tag_suffix=-pr-${CHANGE_ID}
