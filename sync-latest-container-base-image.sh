@@ -11,7 +11,7 @@ else
     tag_suffix=''
 fi
 
-eln_build_name=$(koji -q latest-build --type=image eln-updates-candidate Fedora-Container-Base | awk '{print $1}')
+eln_build_name=$(koji -q latest-build --type=image eln-updates-candidate Fedora-ELN-Container-Base-Generic | awk '{print $1}')
 if [[ -n ${eln_build_name} ]]; then
     # Download the image
     work_dir=$(mktemp -d)
