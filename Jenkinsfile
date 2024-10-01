@@ -34,7 +34,7 @@ properties(
                                 field: '$.tag'
                             ],
                             [
-                                expectedValue: '^Fedora-Container-Base$',
+                                expectedValue: '^Fedora-ELN-Container-Base-Generic$',
                                 field: '$.name'
                             ]
                         ]
