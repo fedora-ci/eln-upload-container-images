@@ -20,7 +20,7 @@ if [[ -n ${eln_build_name} ]]; then
 
     # Import the images
     for arch in "${arches[@]}"; do
-	image="${eln_build_name}.${arch}.tar.xz"
+	image="${eln_build_name}.${arch}.oci.tar.xz"
 	if [[ -f "$image" ]]; then
             xz -d "${image}"
             skopeo copy --dest-creds="$USERNAME:$PASSWORD" docker-archive:${eln_build_name}.${arch}.tar "docker://$image_repo:eln${tag_suffix}-${arch}"
